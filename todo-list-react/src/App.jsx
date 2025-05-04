@@ -1,13 +1,24 @@
 // Import all the components
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { TodoList } from "./TodoList"
 import { NewTodoForm } from "./NewTodoForm"
 
 // Code for the main app
 export default function App() {
   // Hook to get current todos, and a function to change the todos
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(() => {
+    // Load todos from local storage
+    const localValue = localStorage.getItem("ITEMS")
+    if (localValue == null) return [] // If theres nothing, return empty array
+
+    return JSON.parse(localValue)
+  })
   
+  // If any todos are changed, update it in the local storagfe
+  useEffect(() => {
+    localStorage.setItem("ITEMS", JSON.stringify(todos))
+  }, [todos])
+
   // Function that completes the todo if checked
   function toggleTodo(id, completed) {
     setTodos(currentTodos => {
