@@ -5,16 +5,17 @@ import { NewTodoForm } from "./NewTodoForm"
 
 // Code for the main app
 export default function App() {
+
   // Hook to get current todos, and a function to change the todos
   const [todos, setTodos] = useState(() => {
+
     // Load todos from local storage
     const localValue = localStorage.getItem("ITEMS")
     if (localValue == null) return [] // If theres nothing, return empty array
-
     return JSON.parse(localValue)
   })
   
-  // If any todos are changed, update it in the local storagfe
+  // If any todos are changed, update it in the local storage
   useEffect(() => {
     localStorage.setItem("ITEMS", JSON.stringify(todos))
   }, [todos])
@@ -22,6 +23,7 @@ export default function App() {
   // Function that completes the todo if checked
   function toggleTodo(id, completed) {
     setTodos(currentTodos => {
+
       // Use a map to update the todos. Find the todo with the matching id and check it
        return currentTodos.map(todo => {
         if (todo.id === id) {
@@ -35,6 +37,7 @@ export default function App() {
   // Function that deletes a todo
   function deleteTodo(id) {
     setTodos(currentTodos => {
+
       // Update the todo list with a filtered one (one without the selected id)
       return currentTodos.filter(todo => todo.id !== id)
     })
@@ -43,6 +46,7 @@ export default function App() {
   // Function that adds a todo
   function addToDo(title) {
     setTodos(currentTodos => {
+
       // Update the todo list with the current one + the new todo
       return [
         ...currentTodos,
@@ -52,10 +56,10 @@ export default function App() {
   }
 
   return (
-    <>
+    <div>
       <NewTodoForm onSubmit={addToDo}/>
       <h1 className="header">Todo List</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
-    </>
+    </div>
   )
 }
