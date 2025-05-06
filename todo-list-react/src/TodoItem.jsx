@@ -9,7 +9,7 @@ export function TodoItem({ id, title, completed, toggleTodo, deleteTodo }) {
                         onChange={e => toggleTodo(id, e.target.checked)}
                         className="w-4 h-4 text-blue-500 border-gray-400 rounded-md focus:ring-blue-500"
                     />
-                    <span className="flex-grow">{title}</span>
+                    <span className="flex-grow">{completed ? (<del>{title}</del>) : (<p>{title}</p>)}</span>
                 </div>
                 <button
                     onClick={e => deleteTodo(id)}

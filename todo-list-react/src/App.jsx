@@ -50,19 +50,22 @@ export default function App() {
       // Update the todo list with the current one + the new todo
       return [
         ...currentTodos,
-        { id: crypto.randomUUID(), title, completed: false },
+        { id: "i" + crypto.randomUUID(), title, completed: false },
       ]
     })
   }
 
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-900 text-center border-4 backdrop-blur-2xl
-     border-gray-900 size-1/3 container mx-auto p-4 rounded-3xl shadow-lg hue-rotate-30
-     bg-gradient-to-tr from-blue-800 to-gray-900 transform transition-transform duration-300 ease-in-out hover:scale-110">
-      <NewTodoForm onSubmit={addToDo}/>
-      <br></br>
-      <h1 className=" text-4xl"><u>Todo List</u></h1>
-      <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
+    <div className="bg-gradient-to-r from-black via-gray-900 to-black h-screen">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gray-900 text-center border-4 backdrop-blur-2xl
+      border-gray-900 w-100 h-125 container mx-auto p-4 rounded-3xl shadow-lg
+      bg-gradient-to-tr from-blue-800 to-gray-900 transform transition-transform duration-300 ease-in-out hover:scale-110">
+        <NewTodoForm onSubmit={addToDo}/>
+        <br></br>
+        <h1 className=" text-4xl"><u>Todo List</u></h1>
+        <br></br>
+        <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo}/>
+      </div>
     </div>
   )
 }
