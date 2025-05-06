@@ -1,7 +1,7 @@
 export function TodoItem({ id, title, completed, toggleTodo, deleteTodo }) {
     return (
         <li>
-            <label className="flex items-center justify-between space-x-2 w-full">
+            <label className="flex items-center justify-between space-x-2 w-full bg-blue-950 rounded-3xl size-8">
                 <div className="flex items-center space-x-2">
                     <input
                         type="checkbox"
@@ -18,6 +18,7 @@ export function TodoItem({ id, title, completed, toggleTodo, deleteTodo }) {
                     X
                 </button>
             </label>
+            <br></br>
         </li>
     );
 }
